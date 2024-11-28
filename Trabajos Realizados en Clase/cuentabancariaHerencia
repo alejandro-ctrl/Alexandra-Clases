@@ -1,0 +1,32 @@
+class CuentaBancaria {
+  constructor(numeroCuenta, titular, saldoInicial=0) {
+    this.numeroCuenta = numeroCuenta;
+    this.titular = titular;
+    this.saldoInicial = saldoInicial;
+  }
+  set saldoInicial(valor) {
+    if (valor > 0 && typeof valor === "number") this._saldoInicial = valor;
+  }
+  get saldoInicial() {
+    return this._saldoInicial;
+  }
+  retirar(cantidad) {
+    if (cantidad > 0 && typeof cantidad === "number") {
+      if (cantidad <= this._saldoInicial) this._saldoInicial -= cantidad;
+    }
+  }
+  depositar(cantidad) {
+    if (cantidad > 0 && typeof cantidad === "number") {
+      this._saldoInicial += cantidad;
+    }
+    }
+    mostrarInformacion() {
+        console.log(`Número de cuenta: ${this.numeroCuenta} y nombre de propietario ${this.titular} y el saldo de la cuenta es${this._saldoInicial}`);
+    }
+}
+let alvaro = new CuentaBancaria("0000", "Alvaro Muñiz", 1000);
+alvaro.mostrarInformacion();
+alvaro.depositar(100);
+alvaro.mostrarInformacion();
+alvaro.retirar(80);
+alvaro.mostrarInformacion();
